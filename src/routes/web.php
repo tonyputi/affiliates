@@ -27,5 +27,6 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
-    Route::get('/affiliates', AffiliateController::class)->name('affiliates');
+    Route::get('/affiliates', [AffiliateController::class, 'index'])->name('affiliates.index');
+    Route::post('/affiliates', [AffiliateController::class, 'import'])->name('affiliates.import');
 });
