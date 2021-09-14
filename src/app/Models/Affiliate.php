@@ -29,39 +29,19 @@ class Affiliate extends Model
     ];
 
     /**
-     * Return the latitude in radian
-     *
-     * @return void
-     */
-    public function getLatitudeInRadiantAttribute()
-    {
-        return deg2rad($this->latitude);
-    }
-
-    /**
-     * Return the longitude in radian
-     *
-     * @return void
-     */
-    public function getLongitudeInRadiantAttribute()
-    {
-        return deg2rad($this->longitude);
-    }
-
-    /**
      * Calculate affiliate distance from latitude and longitude of a radius sphere
      *
-     * @param float $lat
-     * @param float $lng
+     * @param float $latitude
+     * @param float $longitude
      * @param int $radius
      * @return void
      */
-    public function distance($lat, $lng, $radius = self::HEART_RADIUS)
+    public function distance($latitude, $longitude, $radius = self::HEART_RADIUS)
     {        
         $latFrom = deg2rad($this->latitude);
         $lonFrom = deg2rad($this->longitude);
-        $latTo = deg2rad($lat);
-        $lonTo = deg2rad($lng);
+        $latTo = deg2rad($latitude);
+        $lonTo = deg2rad($longitude);
 
         $latDelta = $latTo - $latFrom;
         $lonDelta = $lonTo - $lonFrom;
