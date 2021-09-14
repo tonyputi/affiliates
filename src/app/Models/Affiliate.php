@@ -34,7 +34,7 @@ class Affiliate extends Model
      * @param int $radius
      * @return void
      */
-    public function distance($latitude, $longitude)
+    public function distance(float $latitude, float $longitude)
     {
         return $this->distance = great_circle_distance($this->latitude, $this->longitude, $latitude, $longitude);
     }

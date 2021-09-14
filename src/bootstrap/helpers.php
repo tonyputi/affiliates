@@ -28,13 +28,16 @@ if (! function_exists('parse_file_as_json')) {
 /**
  * Parse the give path as array json and return an array or array
  * 
- * @param string  $path
- * @param bool  $associative
+ * @param float  $latFrom
+ * @param float  $lngFrom
+ * @param float  $latTo
+ * @param float  $lngTo
+ * @param int  $radius
  * 
  * @return array
  */
 if (! function_exists('great_circle_distance')) {
-    function great_circle_distance($latFrom, $lngFrom, $latTo, $lngTo, $radius = HEART_RADIUS) {
+    function great_circle_distance(float $latFrom, float $lngFrom, float $latTo, float $lngTo, int $radius = HEART_RADIUS) {
         $latFrom = deg2rad($latFrom);
         $lngFrom = deg2rad($lngFrom);
 

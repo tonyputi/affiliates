@@ -39,7 +39,7 @@ class AffiliateController extends Controller
         list($lat, $lng) = static::$offices[$city];
 
         $affiliates = Affiliate::orderBy('affiliate_id', 'asc')->get();
-        $affiliates = $affiliates->filter(fn ($affiliate) => $affiliate->distance($lat, $lng) <= $range);
+        $affiliates = $affiliates->filter(fn ($affiliate) => $affiliate->distance($lat, $lng) <= $range)->values();
 
         return Inertia::render('Affiliates/Index', [
             'affiliates' => $affiliates,
@@ -64,6 +64,7 @@ class AffiliateController extends Controller
 
         try {
             $data = $request->attachment->parseJson();
+            
             
             // trucante the table affiliates
             Affiliate::truncate();
