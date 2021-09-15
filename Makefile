@@ -23,23 +23,22 @@ restart:
 
 init:
 	$(info Make: Initializing environment.)
+	@docker exec -u $(USER) $(CONTAINER) touch database/database.sqlite
 	@docker exec -u $(USER) $(CONTAINER) cp .env.example .env
-	@docker exec -u $(USER) $(CONTAINER) composer install
-	@docker exec -u $(USER) $(CONTAINER) php artisan migrate:refresh --seed --force
+	@docker exec -u $(USER) $(CONTAINER) composer install --ansi
 	@docker exec -u $(USER) $(CONTAINER) php artisan key:generate
+	@docker exec -u $(USER) $(CONTAINER) php artisan migrate:refresh --seed --force
 
 docs:
 	$(info Make: Generate application documentation.)
-	
 	@docker exec -u $(USER) $(CONTAINER) ./vendor/bin/doctum.php update --force doctum.config.php
 
 test:
 	$(info Make: Starting environment tests.)
-	@docker exec -u $(USER) $(CONTAINER) php artisan test --group runitonce
+	@docker exec -u $(USER) $(CONTAINER) php artisan test --group affiliates
 
 dusk:
 	$(info Make: Starting environment dusk tests.)
-	@docker exec -u $(USER) $(CONTAINER) touch database/database.sqlite
 	@docker exec -u $(USER) $(CONTAINER) php artisan dusk
 
 testall:
