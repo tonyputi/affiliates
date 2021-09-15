@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AffiliateController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', AffiliateController::class);
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
+    Route::get('/affiliates', [AffiliateController::class, 'index'])->name('affiliates.index');
+    Route::post('/affiliates', [AffiliateController::class, 'import'])->name('affiliates.import');
+});
