@@ -42,11 +42,12 @@ Requirements: (PHP 7.4, Composer)
 Within your cloned project folder execute the following commands:
 
 1. Type `cd src`
-2. TYpe `cp .env.example .env`
-3. Type `composer install`
-4. Type `php artisan key:generate`
-5. Type `php artisan migrate:refresh --seed`
-6. Type `php artisan serve`
+2. Type `cp .env.example .env`
+3. TYpe `touch database/database.sqlite`
+4. Type `composer install`
+5. Type `php artisan key:generate`
+6. Type `php artisan migrate --seed`
+7. Type `php artisan serve`
 
 Remember to refer to your project as http://localhost:8000
 
