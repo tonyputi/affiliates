@@ -13,6 +13,7 @@ class HelpersTest extends TestCase
      * Parse affiliates file without errors
      *
      * @return void
+     * @group affiliates
      */
     public function test_parse_file_as_json_success()
     {
@@ -28,6 +29,7 @@ class HelpersTest extends TestCase
      * Parse not existing file and throw an exception
      *
      * @return void
+     * @group affiliates
      */
     public function test_parse_file_as_json_error()
     {
@@ -40,6 +42,7 @@ class HelpersTest extends TestCase
      * Parse invalid format/encoding file
      *
      * @return void
+     * @group affiliates
      */
     public function test_parse_file_as_json_validation()
     {
@@ -53,6 +56,7 @@ class HelpersTest extends TestCase
      * Test great circle distance success
      *
      * @return void
+     * @group affiliates
      */
     public function test_great_circle_distance()
     {
@@ -72,5 +76,35 @@ class HelpersTest extends TestCase
 
         // distance should be always less than 100 km
         $this->assertTrue(($distance) <= 100000);
+    }
+
+    /**
+     * Test affiliate:filter CLI command
+     *
+     * @return void
+     * @group affiliates
+     */
+    public function test_affiliates_filter_command()
+    {
+        $this->artisan('affiliates:filter', ['file' => 'public/affiliates.txt', '-r' => 100])
+            ->expectsTable(['ID', 'Name'], [
+                [4, 'Inez Blair'],
+                [5, 'Sharna Marriott'],
+                [6, 'Jez Greene'],
+                [8, 'Addison Lister'],
+                [11, 'Isla-Rose Hubbard'],
+                [12, 'Yosef Giles'],
+                [13, 'Terence Wall'],     
+                [15, 'Veronica Haines'],
+                [17, 'Gino Partridge'],
+                [23, 'Ciara Bannister'],
+                [24, 'Ellena Olson'],
+                [26, 'Moesha Bateman'],
+                [29, 'Alvin Stamp'],
+                [30, 'Kingsley Vang'],
+                [31, 'Maisha Mccarty'],
+                [39, 'Kirandeep Browning']
+            ]);
+
     }
 }

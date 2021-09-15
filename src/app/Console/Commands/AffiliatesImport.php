@@ -12,7 +12,7 @@ class AffiliatesImport extends Command
      *
      * @var string
      */
-    protected $signature = 'affiliate:import {file} {--p|prune}';
+    protected $signature = 'affiliates:import {file} {--p|prune}';
 
     /**
      * The console command description.

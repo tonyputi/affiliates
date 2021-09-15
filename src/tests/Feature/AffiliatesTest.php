@@ -41,6 +41,7 @@ class AffiliateTest extends TestCase
      * Test import affiliates upload missed fail
      *
      * @return void
+     * @group affiliates
      */
     public function test_import_affiliates_validation_error_missed_file()
     {
@@ -60,6 +61,7 @@ class AffiliateTest extends TestCase
      * Test import affiliates upload wrong file
      *
      * @return void
+     * @group affiliates
      */
     public function test_import_affiliates_validation_error_invalid_format()
     {
@@ -82,11 +84,11 @@ class AffiliateTest extends TestCase
      * Test inertia index page range 100 km from dublin
      *
      * @return void
-     * @depends test_import_affiliates_success
+     * @group affiliates
      */
     public function test_affiliates_index_range_100_km_from_dublin_default()
     {
-        $this->artisan('affiliate:import', ['file' => 'public/affiliates.txt', '--force']);
+        $this->artisan('affiliates:import', ['file' => 'public/affiliates.txt', '--force']);
         $this->actingAs($user = User::factory()->create());
 
         $this->get(route('affiliates.index'))
@@ -100,11 +102,11 @@ class AffiliateTest extends TestCase
      * Test inertia index page with range 200 km from dublin
      *
      * @return void
-     * @depends test_import_affiliates_success
+     * @group affiliates
      */
     public function test_affiliates_index_range_200_km_from_dublin()
     {
-        $this->artisan('affiliate:import', ['file' => 'public/affiliates.txt', '--force']);
+        $this->artisan('affiliates:import', ['file' => 'public/affiliates.txt', '--force']);
         $this->actingAs($user = User::factory()->create());
 
         $this->get(route('affiliates.index', ['range' => 200000]))
@@ -118,11 +120,11 @@ class AffiliateTest extends TestCase
      * Test inertia index page with range 500 km from dublin
      *
      * @return void
-     * @depends test_import_affiliates_success
+     * @group affiliates
      */
     public function test_affiliates_index_range_500_km_from_dublin()
     {
-        $this->artisan('affiliate:import', ['file' => 'public/affiliates.txt', '--force']);
+        $this->artisan('affiliates:import', ['file' => 'public/affiliates.txt', '--force']);
         $this->actingAs($user = User::factory()->create());
 
         $this->get(route('affiliates.index', ['range' => 500000]))
@@ -136,11 +138,11 @@ class AffiliateTest extends TestCase
      * Test inertia index page with range 500 km from malta
      *
      * @return void
-     * @depends test_import_affiliates_success
+     * @group affiliates
      */
     public function test_affiliates_index_range_500_km_from_malta()
     {
-        $this->artisan('affiliate:import', ['file' => 'public/affiliates.txt', '--force']);
+        $this->artisan('affiliates:import', ['file' => 'public/affiliates.txt', '--force']);
         $this->actingAs($user = User::factory()->create());
 
         $this->get(route('affiliates.index', [

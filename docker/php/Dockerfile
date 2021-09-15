@@ -5,7 +5,7 @@ ARG GID=0
 ARG USER=www-data
 
 ENV XDEBUG_CONFIG=start_with_request=yes discover_client_host=yes log=/tmp/xdebug.log
-ENV XDEBUG_SESSION=resume
+ENV XDEBUG_SESSION=affiliates
 
 RUN if [ $UID -ne 0 ] && [ $GID -ne 0 ]; then \
     deluser $USER \

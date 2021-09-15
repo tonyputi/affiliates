@@ -18,7 +18,7 @@
                         <option value="50000">50 Km</option>
                         <option value="100000">100 Km</option>
                         <option value="200000">200 Km</option>
-                        <option value="200000">500 Km</option>
+                        <option value="500000">500 Km</option>
                     </select>
 
                     <select v-model="meta.city" @change="updateCity"
